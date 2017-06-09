@@ -1,0 +1,31 @@
+<% include ../partials/header %>
+
+<div class="container">
+   <header class="jumbotron">
+      <div class="container">
+         <h1>Welcome to Frxcon</h1>
+         <p>Give Less, Get More!</p>
+         <p>
+            <a class="btn btn-small btn-success" href="/trades/new">Add a new request</a>
+         </p>
+      </div>
+   </header>
+    <div class="row text-center" style="dsplay:flex; flex-wrap:wrap;">
+      <% trades.forEach(function(trade){ %>
+         <div class = "col-md-3 col-sm-6">
+            <div class = "thumbnail">
+               <img src="http://glocdn.investing.com/news/GBP-USD_2_309x143.jpg" >
+               <div class="caption">
+                  <h4> <%= trade.name %> </h4>
+                  <h4>Need: <%= trade.needCurrency %> <%= trade.need %> </h4>
+                  <h4>Offer: <%= trade.offerCurrency%> <%= trade.offer %> </h4>
+               </div>
+               <p>
+                  <a href="/trades/<%=trade._id %>" class="btn btn-primary">More Info!</a>
+               </p>
+            </div> 
+         </div>
+      <% }) %>
+   </div>
+        
+<% include ../partials/footer %>

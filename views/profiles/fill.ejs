@@ -1,0 +1,49 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row">
+        <h1>Profile Setup</h1>
+            <div>
+                 <form action="/profiles/<%=currentUser%>" method="POST">
+                    <div class="form-group">
+                        <p>Full Name:</p>
+                        <input class="form-control" type="text" name="name" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <p>Contact number:</p>
+                        <input class="form-control" type="text" name="contact" placeholder="Contact number with country code">
+                    </div>
+                    <div class="form-group">
+                        <p>Date of Birth: </p>
+                        <input class="form-control" type="text" name="dob" placeholder="Date of Birth">
+                    </div>
+                    <div class="form-group">
+                        <p>Please state your current occupation:</p>
+                        <input class="form-control" type="text" name="occupation" placeholder="Occupation">
+                    </div>
+                    <div class="form-group">
+                        <p>Please attach your profile image url:</p>
+                        <input class="form-control" type="text" name="image" placeholder="Image">
+                    </div>
+                     <div class="form-group">
+                        <p>Country of Residence:</p>
+                            <input class="form-control" type="text" name="country" placeholder="country">
+                    </div>
+                    <div class="form-group">
+                        <p>Address:</p>
+                        <input class="form-control" type="text" name="address" placeholder="Address">
+                        <!--google maps perharps-->
+                    </div>
+                    <div class="form-group">
+                        <p>I usually require these currencies:</p>
+                            <input class="form-control" type="text" name="currency" placeholder="Currency">
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-small btn-success"type="submit">
+                    </div>
+            </form>
+            <a href="/trades">View all requests</a>
+    </div>
+</div>
+
+<% include ../partials/footer %>

@@ -1,0 +1,46 @@
+<% include ../partials/header %>
+
+<h1>HEELOO</h1>
+
+
+
+<h3>Currency converter</h3>
+
+    <tr action=/results method="GET">
+        <td> 
+            <input type="number" id="fromAmount">
+        </td>
+        <td>
+            <select id="from">
+                <option value="AUD" >Australian Dollar (AUD)</option>
+                <option value="EUR" >Euro Dollar (EUR)</option>
+                <option value="USD" >United States Dollar (USD)</option>
+                <option value="SGD" selected>Singapore Dollar (SGD)</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td> 
+            <input type="number" id="toAmount" disabled
+            >
+        </td>
+        <td>
+            <select id="to">
+                <option value="AUD" >Australian Dollar (AUD)</option>
+                <option value="EUR" >Euro Dollar (EUR)</option>
+                <option value="USD" >United States Dollar (USD)</option>
+                <option value="SGD" >Singapore Dollar (SGD)</option>
+            </select>
+        </td>
+    </tr>
+    
+    <div>Hi there! My name is <%=profile.name%> </div>
+    
+    <div>Working as <%=profile.occupation%> </div>
+    
+    <button type="submit">Submit</button>
+
+<div>See Schedule</div>
+<a href ="/profiles/<%=currentUser.id%>/new">Profile form</a>
+
+<% include ../partials/footer %>

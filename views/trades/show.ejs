@@ -1,0 +1,65 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">Frxcon</p>
+            <div class="list-group">
+                <li class="list-group-item">Info 1 To put the forex exchange</li>
+                <li class="list-group-item">Info 2 friends system maybe, to enter friendly relationship with previous</li>
+                <li class="list-group-item">Info 3 scheduling</li>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="thumbnail">
+                <img class="img-responsive" src="https://static.pexels.com/photos/164560/pexels-photo-164560.jpeg">
+                <div class="caption-full">
+                    <p><em>Post was created by: <a href="#" <em><%=trade.author.username%></em> </a></p>
+                    <p>needs <strong><%= trade.needCurrency %><%= trade.need %></strong> in return for</p>
+                    <p><strong><%= trade.offerCurrency %><%= trade.offer %></strong></p>
+                    <p>Intended location of trade: <%= trade.location %></p>
+                    <p>Reach directly at <strong><%= trade.contact %></strong></p>
+                    <p>Written by <%=trade.author.username%>:</p> 
+                    <p><%= trade.description %></p>
+                    <% if (currentUser && trade.author.id.equals(currentUser._id)){ %>
+                    <a class="btn btn-xs btn-warning" href="/trades/<%= trade._id%>/edit">Edit Request</a>
+                    <form action="/trades/<%= trade._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-xs btn-danger delete-form">Delete Request</button>
+                    </form>
+                    <% } %>
+                </div>
+            </div>
+            <% if (currentUser && trade.author.id.equals(currentUser._id)){ %>
+            <a href="#" class="btn btn-warning">Enter a Livechat with <%=trade.author.username%>!</a>
+            <a href='#' class="btn btn-primary">Schedule with <%=trade.author.username%>!</a>
+            <% } %>
+            <a href='/trades' class="btn btn-info">Main Listing Page</a>
+            <div class="well">
+                <div class="text-right">
+                <a class=" btn btn-success btn-right" href="/trades/<%=trade._id%>/comments/new">Add New Comment!</a>    
+                </div>
+                <hr>
+                <% trade.comments.forEach(function(comment){ %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong><%= comment.author.username %>:</strong>
+                            <span class="pull-right"> 10 days ago </span>
+                            <p><%= comment.text %> </p>
+                            <% if (currentUser && comment.author.id.equals(currentUser._id)){ %>
+                            <a class="btn btn-xs btn-warning" href="/trades/<%=trade._id%>/comments/<%=comment._id%>/edit">
+                                Edit
+                            </a>
+                            <form action="/trades/<%=trade._id%>/comments/<%=comment._id%>?_method=DELETE" method=POST>
+                                <input type ="submit" class = "btn btn-xs btn-danger delete-form" value="Delete">
+                            </form>
+                            <% } %>
+                         </div>
+                         <hr>
+                    </div>
+                  <% }) %> 
+            </div>
+        </div>
+    </div>
+</div>
+<!--10 days ago need to CHANGEEEEEE, it is hard coded!-->
+<% include ../partials/footer %>
