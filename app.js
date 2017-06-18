@@ -7,9 +7,11 @@ var express = require("express"),
     passport = require("passport"),
     LocalStrategy = require("passport-local");
     
+    
 var Trade = require("./models/trade"),
     Comment = require("./models/comment"),
-    User = require("./models/user");
+    User = require("./models/user"),
+    chatServer = require('./servers/server.js')
     
 //=================Routing!!========================================================================
 var commentRoutes = require("./routes/comments"),
@@ -23,6 +25,7 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname+"/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
+chatServer(app);
 
 //====================Passport configuration ======================================================
 

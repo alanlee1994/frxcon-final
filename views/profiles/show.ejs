@@ -1,46 +1,113 @@
 <% include ../partials/header %>
 
-<h1>HEELOO</h1>
-
-
-
-<h3>Currency converter</h3>
-
-    <tr action=/results method="GET">
-        <td> 
-            <input type="number" id="fromAmount">
-        </td>
-        <td>
-            <select id="from">
-                <option value="AUD" >Australian Dollar (AUD)</option>
-                <option value="EUR" >Euro Dollar (EUR)</option>
-                <option value="USD" >United States Dollar (USD)</option>
-                <option value="SGD" selected>Singapore Dollar (SGD)</option>
-            </select>
-        </td>
-    </tr>
-    <tr>
-        <td> 
-            <input type="number" id="toAmount" disabled
-            >
-        </td>
-        <td>
-            <select id="to">
-                <option value="AUD" >Australian Dollar (AUD)</option>
-                <option value="EUR" >Euro Dollar (EUR)</option>
-                <option value="USD" >United States Dollar (USD)</option>
-                <option value="SGD" >Singapore Dollar (SGD)</option>
-            </select>
-        </td>
-    </tr>
+<div class="container" class="background">
+    <div class="col-lg-6">
+            <div id="profileblock">
+            
+            <img src="<%=profile.profileInfo.image%>" id="profileimage" width="120px" height="125px" alt="" >
+            <br />
+                <div class="profileinfo">
+                    <p id="name"><%=profile.profileInfo.name%></p>
+                    <br />
+                    <p id="occupation"><%=profile.profileInfo.occupation%></p>
+                    <br />
+                    <p id="country"><%=profile.profileInfo.country%></p>
+                    <br />
+                    <p id="address"><span id="address1">Address</span><%=profile.profileInfo.address%></p>
+                        <br />
+                    <p id="contact"><span id="contact1">Contact</span><%=profile.profileInfo.contact%></p>
+                    <br />
+                    <p id="birthday"><span id="birthday1">Birthday</span><%=profile.profileInfo.dob%></p>
+                    <br />
+                    <p id="currency"><span id="currency1">Currency</span><%=profile.profileInfo.currency%></p>
+                </div>
+        </div>
+    <% if (profile._id == currentUser.id){ %>
+        <div>
+            <div class="editing">
+                <a id="button1" class="btn btn-xs btn-warning" href ="/profiles/<%=profile._id%>/new">Profile form</a>
+                <a class="btn btn-xs btn-warning" href ="/profiles/<%=profile._id%>/edit">Edit your profile</a>
+            </div>
+        </div>
+    <% } %>
+    </div>
     
-    <div>Hi there! My name is <%=profile.name%> </div>
+<div class="col-lg-6">
     
-    <div>Working as <%=profile.occupation%> </div>
+    <div id="box" onload="convertCurrency();">
+     <h2 id="converter">Currency Converter</h2>
+     <table>
+         <tr>
+             <td><input id="fromAmount" type="number" size="15" value="1" onkeyup="convertCurrency();"/></td>
+             <td>
+                 <select id="from" onchange="convertCurrency();">
+                 <option value="AUD">Australian Dollar (AUD)</option>
+                 <option value="BGN">Bulgarian Lev (BGN)</option>
+                 <option value="CAD">Canadian Dollar (CAD)</option>
+                 <option value="CHF">Swiss Franc (CHF)</option>
+                 <option value="DKK">Danish Krone (DKK)</option>
+                 <option value="HKD">Hong Kong Dollar (HKD)</option>
+                 <option value="GBP">Pound Sterling (GBP)</option> 
+                 <option value="ILS">Israeli New Shekel (ILS)</option>
+                 <option value="INR">Indian Rupee (INR)</option>
+                 <option value="JPY">Japanese Yen (JPY)</option>
+                 <option value="PHP">Philippine Peso (PHP)</option>
+                 <option value="RUB">Russian Ruble (RUB)</option>
+                 <option value="NOK">Norway Kroner(NOK)</option>
+                 <option value="SGD" selected>Singapore Dollar (SGD)</option>
+                 <option value="USD">US Dollar (USD)</option>
+                 <option value="THB">Thailand Baht(THB)</option>
+                 <option value="IDR">Indonesia Rupiah(IDR)</option>
+                 <option value="CNY">China Yuan/Renminbi(CNY)</option>
+                 </select>
+             </td>
+         </tr>
+         <tr>
+            <td><input id="toAmount" type="number" size="15" disabled/></td>
+             <td>
+                 <select id="to" onchange="convertCurrency();">
+                 <option value="AUD">Australian Dollar (AUD)</option>
+                 <option value="BGN">Bulgarian Lev (BGN)</option>
+                 <option value="CAD">Canadian Dollar (CAD)</option>
+                 <option value="CHF">Swiss Franc (CHF)</option>
+                 <option value="DKK">Danish Krone (DKK)</option>
+                 <option value="GBP">Pound Sterling (GBP)</option> 
+                 <option value="ILS">Israeli New Shekel (ILS)</option>
+                 <option value="INR">Indian Rupee (INR)</option>
+                 <option value="JPY">Japanese Yen (JPY)</option>
+                 <option value="PHP">Philippine Peso (PHP)</option>
+                 <option value="RUB">Russian Ruble (RUB)</option>
+                 <option value="USD" selected>US Dollar (USD)</option>
+                 <option value="SGD">Singapore Dollar (SGD)</option>
+                 <option value="HKD">Hong Kong Dollar (HKD)</option>
+                 <option value="NOK">Norway Kroner(NOK)</option>
+                 <option value="THB">Thailand Baht(THB)</option>
+                 <option value="IDR">Indonesia Rupiah(IDR)</option>
+                 <option value="CNY">China Yuan/Renminbi(CNY)</option>
+                 </select>
+             </td>
+         </tr>
+     </table>
+    </div>
     
-    <button type="submit">Submit</button>
-
-<div>See Schedule</div>
-<a href ="/profiles/<%=currentUser.id%>/new">Profile form</a>
+    <div id='transactionHistory'>
+        <h2>Transaction History</h2>
+        <hr class="style18">
+    </div>
+    
+    <div>
+        <h2>Trustworthiness(BENG!!)</h2>
+    </div>
+    
+    <div>
+        <h2>See me also on</h2>
+        <i class="fa fa-facebook-official" aria-hidden="true"></i>
+        <i class="fa fa-twitter" aria-hidden="true"></i>
+        <i class="fa fa-instagram" aria-hidden="true"></i>
+        <i class="fa fa-github" aria-hidden="true"></i>
+        <i class="fa fa-reddit-alien" aria-hidden="true"></i>
+        <i class="fa fa-weixin" aria-hidden="true"></i>
+    </div>
+</div>
 
 <% include ../partials/footer %>

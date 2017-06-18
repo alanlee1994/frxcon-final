@@ -24,8 +24,5 @@ var profileSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref:"Trade"
     }],
-
 });
-    
-
-module.exports = mongoose.model("profile",profileSchema);
+module.exports = mongoose.model("Profile", profileSchema);

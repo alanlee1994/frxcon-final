@@ -14,7 +14,7 @@
             <div class="thumbnail">
                 <img class="img-responsive" src="https://static.pexels.com/photos/164560/pexels-photo-164560.jpeg">
                 <div class="caption-full">
-                    <p><em>Post was created by: <a href="#" <em><%=trade.author.username%></em> </a></p>
+                    <p><em>Post was created by: <a href="/profiles/<%=trade.author.id%>"><em><%=trade.author.username%></em> </a></p>
                     <p>needs <strong><%= trade.needCurrency %><%= trade.need %></strong> in return for</p>
                     <p><strong><%= trade.offerCurrency %><%= trade.offer %></strong></p>
                     <p>Intended location of trade: <%= trade.location %></p>

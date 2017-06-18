@@ -5,22 +5,29 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="/stylesheets/main.css">
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lato|PT+Sans" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+        
     </head>
     <body>
-        <nav class="navbar navbar-inverse">
+        <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/trades"><i class="fa fa-money" aria-hidden="true"></i> Frxcon</a>
+                <a class="navbar-brand" href="/trades">
+                    <img alt="Brand" src="https://cdn-images-1.medium.com/max/1000/1*C5EUmZxtu2YeaFCehaY6OQ.jpeg" id="logo" width="40px" height="40px" alt="">
+                    </a>
                 
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav navbar-right nav">
-                        <li><a href="/chats">LiveChat!</a></li>
+                        <li id="chat"><a href="/chats/login">LiveChat!</a></li>
                         <% if (!currentUser){ %>
                         <li><a href="/login">Login</a></li>
                         <li><a href="/register">Register!</a></li>
                          <% } else { %>
-                         <li><a href="#">Signed In As <%= currentUser.username%> </a></li>
+                         <li id="signed"><a href="/profiles/<%=currentUser.id%>">Signed In As <%= currentUser.username%> </a></li>
                         <li><a href="/logout">Logout</a></li>
                     <% } %>
                 </ul>

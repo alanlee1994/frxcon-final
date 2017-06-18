@@ -8,9 +8,23 @@
          <p>
             <a class="btn btn-small btn-success" href="/trades/new">Add a new request</a>
          </p>
+         <p>
+            <form action="/trades" method="GET" class="form-inline">
+               <div class="form-group">
+                  <input type='text' name='search' placeholder="Your required currency" class="form-control">
+                  <input type='submit' value="Search" class="btn btn-default">
+               </div>
+            </form>
+         </p>
       </div>
    </header>
     <div class="row text-center" style="dsplay:flex; flex-wrap:wrap;">
+      <div class="col-md-12">
+         <% if(noMatch !== null){%>
+         <h3><%=noMatch%></h3>
+         <a href=/trades class="btn-info btn-xs">Back to Listing Page</a>
+         <% } %>
+      </div>
       <% trades.forEach(function(trade){ %>
          <div class = "col-md-3 col-sm-6">
             <div class = "thumbnail">

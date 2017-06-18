@@ -1,11 +1,12 @@
 var express = require("express"),
-    router = express.Router(),
+    router = express.Router({mergeParams: true}),
     Trade = require("../models/trade"),
     Comment = require("../models/comment"),
     passport = require("passport"),
     User = require("../models/user"),
     Profile = require("../models/profile"),
-    middleware = require("../middleware")
+    middleware = require("../middleware"),
+    bodyParser=require("body-parser")
 
 router.get("/", function (req,res){
     res.render("landing");
@@ -47,7 +48,7 @@ router.get("/logout", function(req,res){
     res.redirect("/trades");
 })
 //==================================Profile========================================================
-router.get("/profiles/:id/new", function(req,res){
+router.get("/profiles/:username/new", function(req,res){
     res.render("profiles/fill");
 });
 
@@ -59,35 +60,55 @@ router.post("/profiles/:id", function(req,res){
         image = req.body.image,
         country = req.body.country,
         address = req.body.address,
-        currency = req.body.currency,
-        author={
-        id: req.user._id,
-        username: req.user.username
-    };
-    var newProfile={name: name, contact:contact, dob: dob, 
+        currency = req.body.currency
+    var profileInfo={name: name, contact:contact, dob: dob, 
     occupation: occupation, image: image, country:country, address:address, 
-    currency: currency ,author: author };
-    Profile.create(newProfile,function(err,newlycreated){
+    currency: currency};
+    User.findById(req.user._id, function(err,foundUser){
         if (err){
             console.log(err);
         } else{
-            res.redirect("/profiles/"+newProfile.author.id)    
+            foundUser.profileInfo = profileInfo;
+            foundUser.save();
+            res.redirect("/profiles/"+foundUser.id)    
         }
     });
 });
 
 router.get("/profiles/:id",function(req,res){
-    Profile.find({username :req.params.username}, function(err, foundProfile){
+    User.findById(req.params.id, function(err, foundUser){
         if (err){
+            console.log(err)
             req.flash("error","Request not found!")
             res.redirect("back")
         } else {
-            console.log(foundProfile)
-            res.render("profiles/show", {profile:foundProfile});
+            res.render("profiles/show", {profile:foundUser});
         }
     });
 });
-//This part does not give any error anymore, but when run just cannot see the data
+
 //Edit Profile======================================================================================
+router.get("/profiles/:id/edit", function(req,res){
+    User.findById(req.params.id, function(err,foundUser){
+        if (err) {
+            res.redirect("back")
+        } else {
+            res.render('profiles/edit', {profile:foundUser})
+        }
+    });
+});
+
+router.put("/profiles/:id", function(req,res){
+    User.findById(req.params.id, function(err,updatedUser){
+        if (err){
+            req.flash("error","Edit request cannot be handled")
+            res.render("back")
+        } else {
+            updatedUser.profileInfo = req.body.profile;
+            updatedUser.save();
+            res.redirect("/profiles/"+req.params.id);
+        }
+    });
+});
 
 module.exports=router;

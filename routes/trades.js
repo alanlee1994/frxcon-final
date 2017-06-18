@@ -5,13 +5,28 @@ var express = require("express"),
 
 
 router.get("/", function(req,res){
+    var noMatch=null;
+    if(req.query.search){
+        const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+        Trade.find({offerCurrency:regex}, function(err,alltrades){
+            if (err){
+                console.log(err);
+            } else {
+                if(alltrades.length <1 ){
+                    noMatch = "Currency that you require is not available.";
+                }
+                res.render("trades/index",{trades:alltrades,noMatch:noMatch});
+            }
+        });
+    } else {
         Trade.find({}, function(err,alltrades){
-        if (err){
-            console.log(err);
-        } else {
-            res.render("trades/index",{trades:alltrades});
-        }
-    });
+            if (err){
+                console.log(err);
+            } else {
+                res.render("trades/index",{trades:alltrades, noMatch:noMatch});
+            }
+        });
+    }
 });
 
 //===========================where people post their requests================================
@@ -82,5 +97,10 @@ router.delete("/:id", middleware.checkTradeOwnership,function(req,res){
         }
     })
 });
+
+// Fuzzy search logic function
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 
 module.exports = router;

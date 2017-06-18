@@ -1,3 +1,189 @@
 .delete-form{
   display: inline;
 }
+
+body{
+    background-color:ffffff;
+    font-family: 'PT Sans', sans-serif;;
+}
+
+.background{
+    background-color:#51cf66;
+    
+}
+
+#profileblock{
+    position:relative;
+    left:80px;
+    padding-top:30px;
+    border-right:20px;
+}
+
+#profileimage{
+    border-radius:75%;
+    position:relative;
+    left:5px;
+    box-shadow: 2px 2px 1px #888888
+}
+
+
+.profileinfo{
+    line-height:80%;
+    position:relative;
+    left:40px;
+    font-family: 'PT Sans', sans-serif;
+    font-size:20px;
+    float:left;
+}
+
+#name{
+    font-weight:bold;
+    font-size:150%;
+    position:relative;
+    top:20px;
+    left:-25px;
+}
+
+#occupation{
+    color:#adb5bd;
+    font-size:80%;
+    position:relative;
+    top:10px;
+    left:-5px;
+}
+
+#country{
+    position:relative;
+    left:-20px;
+    color:#ff6b6b;
+}
+
+#address{
+    position:relative;
+    left:-220px;
+    text-align:center;
+    line-height:110%;
+    
+}
+
+#address1{
+    margin-right:10px;
+    font-size:80%;
+}
+
+#contact{
+    position:relative;
+    left:-80px;
+}
+
+#contact1{
+    margin-right:10px;
+    font-size:80%;
+}
+
+#birthday{
+    position:relative;
+    left:-80px;
+}
+
+#birthday1{
+    margin-right:10px;
+    font-size:80%;
+}
+
+#currency{
+    position:relative;
+    left:-80px;
+    
+}
+
+#currency1{
+    margin-right:10px;
+    font-size:80%;
+}
+
+#currencyConverter{
+    position:relative;
+    left:50px;
+}
+
+#button1{
+    margin-right:25px;
+}
+
+.editing{
+    padding-top:20px;
+    position:relative;
+    left:250px;
+}
+
+#converter{
+    font-family:'Lato',sans-serif;
+}
+
+#logo{
+    position:relative;
+    top:-10px;
+}
+
+#signed{
+    border-style:solid;
+    border-color:#6eddde;
+    border-radius:20px;
+    padding:-10px;
+}
+
+.login{
+   text-align:center;
+   padding:130px;
+}
+
+.username{
+    border-radius:25px;
+    padding:10px;
+}
+
+.password{
+    border-radius:25px;
+    padding:10px;
+}
+
+.enter{
+    background-color:#40c057;
+    border-color:#37b24d;
+    border-radius:20px;
+}
+
+.headline{
+   text-align:center;
+   font-family: 'Oswald', sans-serif;
+   font-weight:bold;
+   position:relative;
+   top:50px;
+}
+
+#transactionHistory{
+    width:400px;
+    height:200px;
+    background-color: #b2c2bf;
+}
+
+
+hr.style18 { 
+  height: 30px; 
+  border-style: solid; 
+  border-color: #8c8b8b; 
+  border-width: 1px 0 0 0; 
+  border-radius: 20px; 
+} 
+hr.style18:before { 
+  display: block; 
+  content: ""; 
+  height: 30px; 
+  margin-top: -31px; 
+  border-style: solid; 
+  border-color: #8c8b8b; 
+  border-width: 0 0 1px 0; 
+  border-radius: 20px; 
+}
+

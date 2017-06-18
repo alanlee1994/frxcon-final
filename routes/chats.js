@@ -5,14 +5,11 @@ var express = require("express"),
     http = require('http').Server(router),
     io = require('socket.io').listen(server);
 
+router.get("/chats/login",function(req,res){
+  res.render("chats/login");
+});
+
 router.get("/chats",function(req,res){
-  res.render("chats/index");
+  res.render("chats/chat");
 });
-
-io.sockets.on('connection',function(socket){
-  socket.on('send message',function (data){
-    io.sockets.emit('new message',data);
-  });
-});
-
 module.exports=router;

@@ -1,10 +1,18 @@
 <% include ./partials/header %>
-<h1>Sign Up!</h1>
+<h1 class="headline">Sign Up</h1>
 
 <form action="/register" method="POST">
-    <input type="text" name="username" placeholder="Username">
-    <input type="password" name="password" placeholder="Password">
-    <button>Submit</button>
+<div class="login">
+    <div class="form-group">
+        <input class="username" type="text" name="username" placeholder="Username">
+        <br />
+        <br />
+        <input class="password" type="password" name="password" placeholder="Password">
+        <br />
+        <br />
+    </div>
+    <button class="enter">Submit</button>
+</div>
     
 </form>
 

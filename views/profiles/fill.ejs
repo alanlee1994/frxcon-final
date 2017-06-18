@@ -4,7 +4,7 @@
     <div class="row">
         <h1>Profile Setup</h1>
             <div>
-                 <form action="/profiles/<%=currentUser%>" method="POST">
+                 <form action="/profiles/<%= currentUser.id %>" method="POST">
                     <div class="form-group">
                         <p>Full Name:</p>
                         <input class="form-control" type="text" name="name" placeholder="Name">
