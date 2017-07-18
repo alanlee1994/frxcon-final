@@ -1,45 +1,109 @@
 <% include ../partials/header %>
 
-<div class="container">
-   <header class="jumbotron">
-      <div class="container">
-         <h1>Welcome to Frxcon</h1>
-         <p>Give Less, Get More!</p>
-         <p>
-            <a class="btn btn-small btn-success" href="/trades/new">Add a new request</a>
-         </p>
-         <p>
-            <form action="/trades" method="GET" class="form-inline">
-               <div class="form-group">
-                  <input type='text' name='search' placeholder="Your required currency" class="form-control">
-                  <input type='submit' value="Search" class="btn btn-default">
+   <!-- Home -->
+   <section id="home">
+      <div id="home-cover" class="bg-parallax animated fadeIn">
+         <div id="home-content-box">
+            <div id="home-content-box-inner">
+               <div class="container">
+                  <div class="row">
+                     
+                     <div class="col-md-6 text-left">
+                        <h2>Welcome to FRXCON</h3>
+                        <h4>Give less, get more today with your unused foreign currency.</h2>
+                        <div id="home-btn" class="animated zoomIn">
+                           <a class="btn btn-lg btn-general hvr-sweep-to-right" href="#requests" title="Make Requests">Add Request</a>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="frxcon-image animated zoomIn">
+                           <img src="https://cdn-images-1.medium.com/max/1000/1*nLTB2BK3dro3n42DNecQuQ.png">
+                        </div>
+                     </div>
+                  </div>
                </div>
-            </form>
-         </p>
-      </div>
-   </header>
-    <div class="row text-center" style="dsplay:flex; flex-wrap:wrap;">
-      <div class="col-md-12">
-         <% if(noMatch !== null){%>
-         <h3><%=noMatch%></h3>
-         <a href=/trades class="btn-info btn-xs">Back to Listing Page</a>
-         <% } %>
-      </div>
-      <% trades.forEach(function(trade){ %>
-         <div class = "col-md-3 col-sm-6">
-            <div class = "thumbnail">
-               <img src="http://glocdn.investing.com/news/GBP-USD_2_309x143.jpg" >
-               <div class="caption">
-                  <h4> <%= trade.name %> </h4>
-                  <h4>Need: <%= trade.needCurrency %> <%= trade.need %> </h4>
-                  <h4>Offer: <%= trade.offerCurrency%> <%= trade.offer %> </h4>
-               </div>
-               <p>
-                  <a href="/trades/<%=trade._id %>" class="btn btn-primary">More Info!</a>
-               </p>
-            </div> 
+            </div>
          </div>
-      <% }) %>
-   </div>
+      </div>
+   </section>
+   <!-- About Us -->
+   <section id="about">
+      <div class="content-box">
+         <div class="content-title-black wow animated fadeInDown text-center" data-wow-duration="1s" data-wow-delay=".5s">
+            <h3 class="text-center">About Us</h3>
+            <div class="content-title-underline-black"></div>
+         </div>
+         
+         <div class="container">
+            <div class="row">
+               <div class="col-md-4 text-center about-sections">
+                  <img src="https://cdn-images-1.medium.com/max/1000/1*ZnPhC3tFhMgVVtosUG6YxQ.png" class="hvr-border-fade">
+                  <h2>Deal with other users</h2>
+                  <h3>Deal with a global network of users at<br>the best exchange rates possible.</h3>
+               </div>
+               <div class="col-md-4 text-center about-sections">
+                  <img src="https://cdn-images-1.medium.com/max/1000/1*30oHzSB65bzZIGhzJyy3TA.png" class="hvr-border-fade">
+                  <h2>Chat with other users</h2>
+                  <h3>Make use of our chat function to link<br>up with your potential trade partners.</h3>
+               </div>
+               <div class="col-md-4 text-center about-sections">
+                  <img src="https://cdn-images-1.medium.com/max/1000/1*Bp-tEu4xmh4xLzqZFlIz0Q.png" class="hvr-border-fade">
+                  <h2>User Profile</h2>
+                  <h3>Set up and edit your own user<br>account and profile.</h3>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   
+   <!-- Requests -->
+     <section id="requests">
+         <div class="content-box">
+            <div class="content-title wow animated fadeInDown text-center" data-wow-duration="1s" data-wow-delay=".5s">
+               <h3 class="text-center">Available Requests</h3>
+               <div class="content-title-underline"></div>
+                  <% if(noMatch !== null){%>
+                  <h3><%=noMatch%></h3>
+                  <a href=/trades class="btn-info btn-xs">Back to Listing Page</a>
+                  <% } %>
+               <div class="container requests-search">
+                  <div class="row">
+                     <div class="col-md-12 text-center">
+                           <form action="/trades" method="GET" class="form-inline">
+                              <div class="form-group">
+                                 <input id="requests-search-enter" type='text' name='search' placeholder="Your required currency" class="form-control">
+                                 <input type='submit' value="Search" class="btn hvr-sweep-to-right requests-search-button hvr-sweep-to-right">
+                              </div>
+                           </form>
+                        /p>
+                     </div>
+                  </div>
+               </div>
+            <% trades.forEach(function(trade){ %>
+         </div>
+            <div class="container requests-boxes text-center">
+               <div class="row">
+                     <div class="requests-boxes-wrapper"
+                        <div class="col-md-4 text-center" data-wow-duration="1s" data-wow-delay=".5s">
+                  
+                           <h2> <%= trade.name %> </h4>
+                           <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>
+                           <br>
+                           <img src="https://cdn-images-1.medium.com/max/1000/1*VgYBq1P2RdyB1wuzpvL-sA.jpeg" >
+                           <div class="requests-amounts-wrapper">
+                              <h4>Need: <%= trade.needCurrency %> <%= trade.need %> </h4>
+                              <h4>Offer: <%= trade.offerCurrency%> <%= trade.offer %> </h4>
+                           </div>
+                           <p>
+                              <a href="/trades/<%=trade._id %>" class="btn btn-general-black hvr-sweep-to-right1">More Info</a>
+                           </p>
+                           <% }) %>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
         
 <% include ../partials/footer %>

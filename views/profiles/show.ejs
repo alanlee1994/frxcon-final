@@ -1,113 +1,153 @@
 <% include ../partials/header %>
 
-<div class="container" class="background">
-    <div class="col-lg-6">
-            <div id="profileblock">
-            
-            <img src="<%=profile.profileInfo.image%>" id="profileimage" width="120px" height="125px" alt="" >
-            <br />
-                <div class="profileinfo">
-                    <p id="name"><%=profile.profileInfo.name%></p>
-                    <br />
-                    <p id="occupation"><%=profile.profileInfo.occupation%></p>
-                    <br />
-                    <p id="country"><%=profile.profileInfo.country%></p>
-                    <br />
-                    <p id="address"><span id="address1">Address</span><%=profile.profileInfo.address%></p>
-                        <br />
-                    <p id="contact"><span id="contact1">Contact</span><%=profile.profileInfo.contact%></p>
-                    <br />
-                    <p id="birthday"><span id="birthday1">Birthday</span><%=profile.profileInfo.dob%></p>
-                    <br />
-                    <p id="currency"><span id="currency1">Currency</span><%=profile.profileInfo.currency%></p>
+
+<!-- Dashboard -->
+
+<section id="dashboard">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="dashboard-sidebar-wrapper text-center">
+                    <img src="<%=profile.profileInfo.image%>" class="img-circle img-responsive dashboard-profile-img">
+                    <p id="dashboard-profile-name"><%=profile.profileInfo.name%></p>
+                    <p id="dashboard-profile-occupation"><%=profile.profileInfo.occupation%></p>
+                    <img src="https://cdn-images-1.medium.com/max/800/1*X4dJkbhYIa_GLllqcwZT9w.png" class="img-circle img-responsive dashboard-profile-logos">
+                    <p class="dashboard-profile-info"><%=profile.profileInfo.country%></p>
+                    <img src="https://cdn-images-1.medium.com/max/800/1*AR3ZaPCFQkn1R_oNqMAmWA.png" class="img-circle img-responsive dashboard-profile-logos">
+                    <p class="dashboard-profile-info"><%=profile.profileInfo.address%></p>
+                    <img src="https://cdn-images-1.medium.com/max/800/1*v9a7oZjofcxiWeMAcm6BoQ.png" class="img-circle img-responsive dashboard-profile-logos">
+                    <p class="dashboard-profile-info"><%=profile.profileInfo.contact%></p>
+                    <img src="https://cdn-images-1.medium.com/max/800/1*33j6QPLf_wjwRlnr3ie7Eg.png" class="img-circle img-responsive dashboard-profile-logos">
+                    <p class="dashboard-profile-info"><%=profile.profileInfo.dob%></p>
+                    <img src="https://cdn-images-1.medium.com/max/800/1*eDrvH8WcrHvuIqib6TXROw.png" class="img-circle img-responsive dashboard-profile-logos">
+                    <p class="dashboard-profile-info"><%=profile.profileInfo.currency%></p>
+                    <a class="btn btn-general-dashboard text-center hvr-sweep-to-top" href ="/profiles/<%=profile._id%>/edit">Edit Profile</a>
                 </div>
-        </div>
-    <% if (profile._id == currentUser.id){ %>
-        <div>
-            <div class="editing">
-                <a id="button1" class="btn btn-xs btn-warning" href ="/profiles/<%=profile._id%>/new">Profile form</a>
-                <a class="btn btn-xs btn-warning" href ="/profiles/<%=profile._id%>/edit">Edit your profile</a>
+            </div>
+            
+            <!-- Currency Converter -->
+            
+            <div class="col-md-3 dashboard-modules">
+                <div class="dashboard-content-box">
+                    <div class="dashboard-content-title">
+                        <h3>Currency Converter</h3>
+                        <div class="dashboard-content-underline"></div>
+                    </div>
+                    <div class="dashboard-converter-wrapper" onload="convertCurrency();">
+                         <table>
+                             <tr>
+                                 <td><input id="fromAmount"  id="dashboard-dropdown" type="number" value="1" onkeyup="convertCurrency();"/></td>
+                                 <td>
+                                     <select  id="from" onchange="convertCurrency();">
+                                     <option class="dashboard-dropdown-text" value="AUD">Australian Dollar (AUD)</option>
+                                     <option class="dashboard-dropdown-text" value="BGN">Bulgarian Lev (BGN)</option>
+                                     <option class="dashboard-dropdown-text" value="CAD">Canadian Dollar (CAD)</option>
+                                     <option class="dashboard-dropdown-text" value="CHF">Swiss Franc (CHF)</option>
+                                     <option class="dashboard-dropdown-text" value="DKK">Danish Krone (DKK)</option>
+                                     <option class="dashboard-dropdown-text" value="HKD">Hong Kong Dollar (HKD)</option>
+                                     <option class="dashboard-dropdown-text" value="GBP">Pound Sterling (GBP)</option> 
+                                     <option class="dashboard-dropdown-text" value="ILS">Israeli New Shekel (ILS)</option>
+                                     <option class="dashboard-dropdown-text" value="INR">Indian Rupee (INR)</option>
+                                     <option class="dashboard-dropdown-text" value="JPY">Japanese Yen (JPY)</option>
+                                     <option class="dashboard-dropdown-text" value="PHP">Philippine Peso (PHP)</option>
+                                     <option class="dashboard-dropdown-text" value="RUB">Russian Ruble (RUB)</option>
+                                     <option class="dashboard-dropdown-text" value="NOK">Norway Kroner(NOK)</option>
+                                     <option class="dashboard-dropdown-text" value="SGD" selected>Singapore Dollar (SGD)</option>
+                                     <option class="dashboard-dropdown-text" value="USD">US Dollar (USD)</option>
+                                     <option class="dashboard-dropdown-text" value="THB">Thailand Baht(THB)</option>
+                                     <option class="dashboard-dropdown-text" value="IDR">Indonesia Rupiah(IDR)</option>
+                                     <option class="dashboard-dropdown-text" value="CNY">China Yuan/Renminbi(CNY)</option>
+                                     </select>
+                                 </td>
+                             </tr>
+                             <tr>
+                                <td><input  type="number" id="toAmount" disabled/></td>
+                                 <td>
+                                     <select class="dashboard-resized-input2" id="to" class="selects" onchange="convertCurrency();">
+                                     <option class="dashboard-dropdown-text"  value="AUD">Australian Dollar (AUD)</option>
+                                     <option class="dashboard-dropdown-text"  value="BGN">Bulgarian Lev (BGN)</option>
+                                     <option class="dashboard-dropdown-text"  value="CAD">Canadian Dollar (CAD)</option>
+                                     <option class="dashboard-dropdown-text"  value="CHF">Swiss Franc (CHF)</option>
+                                     <option class="dashboard-dropdown-text"  value="DKK">Danish Krone (DKK)</option>
+                                     <option class="dashboard-dropdown-text"  value="GBP">Pound Sterling (GBP)</option> 
+                                     <option class="dashboard-dropdown-text"  value="ILS">Israeli New Shekel (ILS)</option>
+                                     <option class="dashboard-dropdown-text"  value="INR">Indian Rupee (INR)</option>
+                                     <option class="dashboard-dropdown-text"  value="JPY">Japanese Yen (JPY)</option>
+                                     <option class="dashboard-dropdown-text"  value="PHP">Philippine Peso (PHP)</option>
+                                     <option class="dashboard-dropdown-text"  value="RUB">Russian Ruble (RUB)</option>
+                                     <option class="dashboard-dropdown-text"  value="USD" selected>US Dollar (USD)</option>
+                                     <option class="dashboard-dropdown-text"  value="SGD">Singapore Dollar (SGD)</option>
+                                     <option class="dashboard-dropdown-text"  value="HKD">Hong Kong Dollar (HKD)</option>
+                                     <option class="dashboard-dropdown-text"  value="NOK">Norway Kroner(NOK)</option>
+                                     <option class="dashboard-dropdown-text"  value="THB">Thailand Baht(THB)</option>
+                                     <option class="dashboard-dropdown-text"  value="IDR">Indonesia Rupiah(IDR)</option>
+                                     <option class="dashboard-dropdown-text"  value="CNY">China Yuan/Renminbi(CNY)</option>
+                                     </select>
+                                 </td>
+                             </tr>
+                         </table>
+                    </div>
+                    <button class="btn btn-general-dashboard hvr-sweep-to-top dashboard-button" href="#requests" title="Marketplace">Existing Requests</button>
+                </div>
+            </div>
+            
+            <!-- Transaction history -->
+            <div class="dashboard-transaction-wrapper">
+                <div class="col-md-3 dashboard-modules text-left dashboard-transaction-wrapper-sub">
+                    <div class="dashboard-content-box">
+                        <div class="dashboard-content-title">
+                            <h3>Transaction History</h3>
+                            <div class="dashboard-content-underline text-left dashboard-transaction-underline"></div>
+                        </div>
+                        <div class="dashboard-transaction-details-wrapper">
+                            <h3>Johnathan Isaac</h3>
+                            <h4>Amount Received: 50 USD</h4>
+                            <h4>Amount Given: 20 SGD</h4>
+                            <h4>Date: 16 July 2017</h4>
+                            <div class="dashboard-transaction-details-underline"></div>
+                        </div>
+                        <div class="dashboard-transaction-details-wrapper">
+                            <h3>Johnathan Isaac</h3>
+                            <h4>Amount Received: 50 USD</h4>
+                            <h4>Amount Given: 20 SGD</h4>
+                            <h4>Date: 16 July 2017</h4>
+                            <div class="dashboard-transaction-details-underline"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Social Media -->
+            <div class="container">
+                <div class="row">
+                    <div class="dashboard-socialmedia">
+                        <div class="col-md-3 dashboard-modules text-left ">
+                            <div class="dashboard-content-box">
+                                <div class="dashboard-content-title">
+                                    <h3>Social Media</h3>
+                                    <div class="dashboard-content-underline text-left dashboard-transaction-underline"></div>
+                                    <a href="https://www.facebook.com"><i class="fa fa-facebook"></i></a><a href="https://www.twitter.com"><i class="fa fa-twitter"></i></a></i><i class="fa fa-google-plus"></i><i class="fa fa-instagram"></i><i class="fa fa-linkedin"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 dashboard-modules text-left ">
+                            <div class="dashboard-content-box">
+                                <div class="dashboard-content-title">
+                                    <h3>Community Rating</h3>
+                                    <div class="dashboard-content-underline text-left dashboard-transaction-underline"></div>
+                                    <div class="dashboard-rating-wrapper text-center">
+                                        <h2>4.6 / 5</h2>
+                                        <h4>TRUSTWORTHY TRADE PARTNER</h4>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    <% } %>
     </div>
-    
-<div class="col-lg-6">
-    
-    <div id="box" onload="convertCurrency();">
-     <h2 id="converter">Currency Converter</h2>
-     <table>
-         <tr>
-             <td><input id="fromAmount" type="number" size="15" value="1" onkeyup="convertCurrency();"/></td>
-             <td>
-                 <select id="from" onchange="convertCurrency();">
-                 <option value="AUD">Australian Dollar (AUD)</option>
-                 <option value="BGN">Bulgarian Lev (BGN)</option>
-                 <option value="CAD">Canadian Dollar (CAD)</option>
-                 <option value="CHF">Swiss Franc (CHF)</option>
-                 <option value="DKK">Danish Krone (DKK)</option>
-                 <option value="HKD">Hong Kong Dollar (HKD)</option>
-                 <option value="GBP">Pound Sterling (GBP)</option> 
-                 <option value="ILS">Israeli New Shekel (ILS)</option>
-                 <option value="INR">Indian Rupee (INR)</option>
-                 <option value="JPY">Japanese Yen (JPY)</option>
-                 <option value="PHP">Philippine Peso (PHP)</option>
-                 <option value="RUB">Russian Ruble (RUB)</option>
-                 <option value="NOK">Norway Kroner(NOK)</option>
-                 <option value="SGD" selected>Singapore Dollar (SGD)</option>
-                 <option value="USD">US Dollar (USD)</option>
-                 <option value="THB">Thailand Baht(THB)</option>
-                 <option value="IDR">Indonesia Rupiah(IDR)</option>
-                 <option value="CNY">China Yuan/Renminbi(CNY)</option>
-                 </select>
-             </td>
-         </tr>
-         <tr>
-            <td><input id="toAmount" type="number" size="15" disabled/></td>
-             <td>
-                 <select id="to" onchange="convertCurrency();">
-                 <option value="AUD">Australian Dollar (AUD)</option>
-                 <option value="BGN">Bulgarian Lev (BGN)</option>
-                 <option value="CAD">Canadian Dollar (CAD)</option>
-                 <option value="CHF">Swiss Franc (CHF)</option>
-                 <option value="DKK">Danish Krone (DKK)</option>
-                 <option value="GBP">Pound Sterling (GBP)</option> 
-                 <option value="ILS">Israeli New Shekel (ILS)</option>
-                 <option value="INR">Indian Rupee (INR)</option>
-                 <option value="JPY">Japanese Yen (JPY)</option>
-                 <option value="PHP">Philippine Peso (PHP)</option>
-                 <option value="RUB">Russian Ruble (RUB)</option>
-                 <option value="USD" selected>US Dollar (USD)</option>
-                 <option value="SGD">Singapore Dollar (SGD)</option>
-                 <option value="HKD">Hong Kong Dollar (HKD)</option>
-                 <option value="NOK">Norway Kroner(NOK)</option>
-                 <option value="THB">Thailand Baht(THB)</option>
-                 <option value="IDR">Indonesia Rupiah(IDR)</option>
-                 <option value="CNY">China Yuan/Renminbi(CNY)</option>
-                 </select>
-             </td>
-         </tr>
-     </table>
-    </div>
-    
-    <div id='transactionHistory'>
-        <h2>Transaction History</h2>
-        <hr class="style18">
-    </div>
-    
-    <div>
-        <h2>Trustworthiness(BENG!!)</h2>
-    </div>
-    
-    <div>
-        <h2>See me also on</h2>
-        <i class="fa fa-facebook-official" aria-hidden="true"></i>
-        <i class="fa fa-twitter" aria-hidden="true"></i>
-        <i class="fa fa-instagram" aria-hidden="true"></i>
-        <i class="fa fa-github" aria-hidden="true"></i>
-        <i class="fa fa-reddit-alien" aria-hidden="true"></i>
-        <i class="fa fa-weixin" aria-hidden="true"></i>
-    </div>
-</div>
+</section>
+
+
 
 <% include ../partials/footer %>

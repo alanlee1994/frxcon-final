@@ -1,6 +1,7 @@
 var Trade = require("../models/trade"),
     Comment = require("../models/comment"),
-    Profile = require("../models/profile")
+    Profile = require("../models/profile"),
+    User = require("../models/user");
 
 var middlewareObj={};
 
@@ -72,5 +73,20 @@ middlewareObj.isLoggedIn = function(req,res,next){
     req.flash("error","You need to be logged in to do that")
     res.redirect("/login");
 }   
+
+middlewareObj.checkRatingExists = function(req, res, next){
+  User.findById(req.params.id).populate("ratings").exec(function(err, foundProfile){
+    if(err){
+      console.log(err);
+    }
+    for(var i = 0; i < foundProfile.ratings.length; i++ ) {
+      if(foundProfile.ratings[i].author.id.equals(req.user._id)) {
+        req.flash("success", "You already rated this!");
+        return res.redirect('/trades/' + foundProfile._id);
+      }
+    }
+    next();
+  })
+}
 
 module.exports = middlewareObj

@@ -1,39 +1,94 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Frxcon - Give less, Get more.</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="description" content="Web Design, Fear Not, Beng Jui's Portfolio with HTML5, CSS3, Javascript, Bootstrap">
+        <meta name="viewport" content="width-device-wdith" ,intial-scale="1">
+        
+        <!-- Title -->
+        <title>Frxcon</title>
+        
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+        
+        <!-- Font Awesome -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <!-- bootstrap css -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        
+        <!-- animate CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        
+        <!-- hover CSS -->
+        <link rel="stylesheet" href="https://cdn.bootcss.com/hover.css/2.1.1/css/hover.css">
+        
+        <!-- main CSS -->
         <link rel="stylesheet" href="/stylesheets/main.css">
-        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Lato|PT+Sans" rel="stylesheet">
-        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-         
+        
+<script>
+     function convertCurrency()
+     {
+         var from = document.getElementById("from").value;
+         var to = document.getElementById("to").value;
+         var xmlhttp = new XMLHttpRequest();
+         var url = "https://api.fixer.io/latest?symbols=" + from + "," + to;
+         xmlhttp.open("GET", url, true);
+         xmlhttp.send();
+         xmlhttp.onreadystatechange = function(){
+         if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+         {
+             var result = xmlhttp.responseText;
+             var jsResult = JSON.parse(result);
+             var oneUnit = jsResult.rates[to]/jsResult.rates[from];
+             var amt = document.getElementById("fromAmount").value;
+             document.getElementById("toAmount").value = (oneUnit*amt).toFixed(2);
+         }
+        }
+    }
+ </script>
     </head>
     <body>
-        <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/trades">
-                    <img alt="Brand" src="https://cdn-images-1.medium.com/max/1000/1*C5EUmZxtu2YeaFCehaY6OQ.jpeg" id="logo" width="40px" height="40px" alt="">
-                    </a>
-                
+        <nav class="navbar navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="frxcon-nav-wrapper">
+                    <button type="button" class="navbar-toggle-collapsed" data-toggle="collapse" data-target="frxcon-menu">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/">
+                            <img src="https://cdn-images-1.medium.com/max/1000/1*wFHMJDS_eyKn22qCuLJIgQ.png" class="frxcon-logo">
+                        </a>
+                    </div>
+                </div>
+                <div class="collapse navbar-collapse" id="frxcon-menu">
+                    <ul class="nav navbar-nav">
+                            <li><a class="smooth-scroll hvr-underline-from-left" href="/trades">Home</a></li>
+                            <li><a class="smooth-scroll hvr-underline-from-left" href="#requests">Requests     </a></li>
+                            <li class="smooth-scroll hvr-underline-from-left"><a href="/chats/login">Chat     </a></li>
+                            <% if (!currentUser){ %>
+                            <li class="smooth-scroll hvr-underline-from-left"><a href="/login">Login     </a></li>
+                            <li class="smooth-scroll hvr-underline-from-left"><a href="/register">Register</a></li>
+                             <% } else { %>
+                             <li class="smooth-scroll hvr-underline-from-left"><a href="/profiles/<%=currentUser.id%>">     <%= currentUser.username%> </a></li>
+                            <li class="smooth-scroll hvr-underline-from-left"><a href="/logout">Logout</a></li>
+                        <% } %>
+                    </ul>
+                </div>
             </div>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav navbar-right nav">
-                        <li id="chat"><a href="/chats/login">LiveChat!</a></li>
-                        <% if (!currentUser){ %>
-                        <li><a href="/login">Login</a></li>
-                        <li><a href="/register">Register!</a></li>
-                         <% } else { %>
-                         <li id="signed"><a href="/profiles/<%=currentUser.id%>">Signed In As <%= currentUser.username%> </a></li>
-                        <li><a href="/logout">Logout</a></li>
-                    <% } %>
-                </ul>
-            </div>
-        </div>
-    </nav>
+        </nav>
+        
+        
+        <!-- jquery -->
+        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+        
+        <!-- main JS -->
+        <script src="/js/custom.js"></script>
     
     <div class="container">
         <% if(error && error.length>0){%>

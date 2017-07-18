@@ -14,6 +14,7 @@ var UserSchema = new mongoose.Schema({
         address: String,
         currency: String
     }
+    
 });
 
 UserSchema.plugin(passportLocalMongoose);

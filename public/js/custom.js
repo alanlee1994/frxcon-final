@@ -1,0 +1,9 @@
+$(document).ready(function(){
+    $(window).scroll(function(){
+        if($(this).scrollTop()<50){
+            $("nav".removeClass("frxcon-top-nav"));
+        }else{
+            $("nav").addClass("frxcon-top-nav");
+        }
+    })
+})

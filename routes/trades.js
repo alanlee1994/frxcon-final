@@ -97,6 +97,44 @@ router.delete("/:id", middleware.checkTradeOwnership,function(req,res){
         }
     })
 });
+// checkingout trades route
+
+router.get("/:id/checkout",middleware.isLoggedIn, function (req,res){
+    Trade.findById(req.params.id, function(err,foundTrade){
+            var errMsg = req.flash('error')[0];
+            res.render("trades/checkout",{trade:foundTrade, errMsg: errMsg, noError:!errMsg});
+        });
+});
+
+router.post("/:id/checkout", function(req,res,next){
+    Trade.findById(req.params.id, function(err,foundTrade){
+        if (err){
+            console.log(err)
+        }
+        var stripe = require("stripe")("sk_test_YZWw0StrSxPe4LFoofvELjbe");
+        var token= req.body.stripeToken;
+        var charge = stripe.charges.create({
+        amount: foundTrade.need * 100,
+        currency: foundTrade.needCurrency,
+        source: token, // obtained with Stripe.js
+        description: "Test Charge"
+        },function(err, charge){
+            if(err){
+            req.flash('error', err.message);
+            return res.redirect('/trades/'+foundTrade._id+'/checkout');
+            } else{
+                Trade.findByIdAndRemove(req.params.id, function(err){
+                    if (err){
+                        req.flash('error', "Please contact user to remove this request.")
+                    } else {
+                        req.flash('success', 'Transaction Successful.');
+                        res.redirect('/');
+                    }
+                })
+            }
+        });
+    });
+});
 
 // Fuzzy search logic function
 function escapeRegex(text) {
