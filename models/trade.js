@@ -2,6 +2,7 @@ var mongoose = require("mongoose")
 
 var tradeSchema = new mongoose.Schema({
     name: String,
+    image: String,
     contact: String,
     location: String,
     needCurrency: String,

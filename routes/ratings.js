@@ -19,11 +19,14 @@ router.post('/', middleware.isLoggedIn, middleware.checkRatingExists, function(r
 					foundUser.ratings.push(rating);
 					foundUser.save();
 					req.flash("success", "Successfully added rating");
+					res.redirect('/profiles/' + foundUser._id)
 				});
 		} else {
 				req.flash("error", "Please select a rating");
+				res.redirect('back')
 		}
-		res.redirect('/profiles/' + foundUser._id);
+		
+		// res.redirect('/profiles/' + foundUser._id);
 	});
 });
 

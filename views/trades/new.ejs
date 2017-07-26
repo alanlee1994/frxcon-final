@@ -1,38 +1,45 @@
 <% include ../partials/header %>
-
-<div class="container">
-    <div class="row">
-        <h1>What are you looking for?</h1>
-        <div>
-             <form action="/trades" method="POST">
-                <div class="form-group">
-                    <input class="form-control" type="text" name="name" placeholder="Name">
-                </div>
-                <div class="form-group">
-                    <input class="form-control"type="text" name="contact" placeholder="Contact number with country code">
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="text" name="location" placeholder="Location of trade">
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="text" name="needCurrency" placeholder="Type of currency">
-                    <input class="form-control"type="number" min="0.00" step="1.00" name="need" placeholder="What amount of currency do you need?">
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="text" name="offerCurrency" placeholder="Type of currency">
-                    <input class="form-control"type="number" min="0.00" step="1.00" name="offer" placeholder="What amount of currency do you offer?">
-                </div>
-                <div class="form-group">
-                    <p>Please include any additional requests and contact any prospective users using live chat!</p>
-                    <textarea name="description" placeholder="Additional information"></textarea>
-                </div>
-                <div class="form-group">
-                    <input class="btn btn-small btn-success"type="submit">
-                </div>
-            </form>
-            <a href="/trades">View all offers</a>
+<!-- New Request -->
+<section id="new">
+    <div class="container">
+        <div class="row edit-wrapper">
+            <h1 class="edit-header">What are you looking for?</h1>
+            <div>
+                 <form action="/trades" method="POST">
+                    <div class="form-group edit-labels">
+                        <input class="form-control edit-input" type="text" name="name" value="<%=user.profileInfo.name%>">
+                    </div>
+                    <div class="form-group edit-labels">
+                        <input class="form-control edit-input" type="text" name="image" value="<%=user.profileInfo.image%>">
+                    </div>
+                    <div class="form-group edit-labels">
+                        <input class="form-control edit-input"type="text" name="contact" value="<%=user.profileInfo.contact%>">
+                    </div>
+                    <div class="form-group edit-labels">
+                        <input class="form-control edit-input" type="text" name="location" placeholder="Location of trade">
+                    </div>
+                    <div class="form-group edit-labels">
+                        <input class="form-control edit-input" type="text" name="needCurrency" placeholder="Type of currency">
+                        <br>
+                        <input class="form-control edit-input"type="number" min="0.00" step="1.00" name="need" placeholder="What amount of currency do you need?">
+                    </div>
+                    <div class="form-group edit-labels">
+                        <input class="form-control edit-input" type="text" name="offerCurrency" placeholder="Type of currency">
+                        <br>
+                        <input class="form-control edit-input"type="number" min="0.00" step="1.00" name="offer" placeholder="What amount of currency do you offer?">
+                    </div>
+                    <div class="form-group edit-labels">
+                        <p class="new-requests">Please include any additional requests and contact any prospective users using Live Chat!</p>
+                        <textarea name="description" placeholder="Additional information" class="new-textarea" rows="4" cols="50"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-general-dashboard edit-button hvr-underline-from-left"type="submit">
+                    </div>
+                </form>
+                <a class="new-offers" href="/trades">View all offers</a>
+            </div>
         </div>
     </div>
-</div>
+</section>
 
 <% include ../partials/footer %>

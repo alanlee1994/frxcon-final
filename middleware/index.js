@@ -82,7 +82,7 @@ middlewareObj.checkRatingExists = function(req, res, next){
     for(var i = 0; i < foundProfile.ratings.length; i++ ) {
       if(foundProfile.ratings[i].author.id.equals(req.user._id)) {
         req.flash("success", "You already rated this!");
-        return res.redirect('/trades/' + foundProfile._id);
+        return res.redirect('/profiles/' + foundProfile._id);
       }
     }
     next();

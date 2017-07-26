@@ -13,7 +13,14 @@ var UserSchema = new mongoose.Schema({
         country: String,
         address: String,
         currency: String
-    }
+    },
+       ratings:
+      {
+         type: mongoose.Schema.Types.ObjectId,
+         ref: "Rating"
+      }
+    ,
+    rating: { type: Number, default: 0 }
     
 });
 

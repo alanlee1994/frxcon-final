@@ -9,6 +9,13 @@
         Dark Purple:#4222f1 (Button)
         Medium Slate Blue:#393D54 (Dashboard Module Colours)
         Gray:#CED4DA (Currency Converter Input Line)
+        
+        Social Media Colors:
+        Facebook Color:#3b5998
+        Twitter Color:#1dcaff
+        Google Plus:#d34836
+        Instagram:#8a3ab9
+        LinkedIn:#0077B5
 
 
 /* General CSS */ 
@@ -27,6 +34,9 @@ body {
 .navbar{
     padding:20px 0;
     transition:all 0.5s ease-in-out;
+}
+.navbar-brand{
+    margin-top:-20px;
 }
 .frxcon-nav-wrapper{
     padding:0 85px;
@@ -84,23 +94,105 @@ body {
   color:#282B3A;
 }
 /* ==========================================================
+                        NEW
+===========================================================*/
+#new{
+    width:100%;
+    background:url("https://cdn-images-1.medium.com/max/1000/1*MVvzz1gV_rIrzJfIVp4gAw.png") center;
+    background-size:cover;
+}
+.new-textarea{
+    background:transparent;
+    border:1px solid #fff;
+    padding:10px 20px 10px 10px;
+}
+.new-offers{
+    font-family:"Open Sans",sans-serif;
+    font-weight:300;
+    font-size:14px;
+    color:#fff;
+    margin-bottom:20px;
+}
+.new-offers:hover{
+    text-decoration:none;
+    color:#0CCE6B;
+}
+/* Underline From Left */
+.hvr-underline-from-left {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  position: relative;
+  overflow: hidden;
+}
+.hvr-underline-from-left:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  background: #2098D1;
+  height: 4px;
+  -webkit-transition-property: right;
+  transition-property: right;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-underline-from-left:hover:before, .hvr-underline-from-left:focus:before, .hvr-underline-from-left:active:before {
+  right: 0;
+}
+.new-requests{
+    text-transform:none;
+}
+/* ==========================================================
                         BUTTON
 ===========================================================*/
 .btn-general{
     border:1px solid #0CCE6B;
     border-radius:0px;
-    padding:15px 25px;
+    padding:16px 25px;
     font-family:'Open Sans',sans-serif;
     font-weight:600;
     font-size:10px;
     color:#fff;
     text-transform:uppercase;
-    
+}
+.btn-info-delete{
+    background:transparent;
+    margin-bottom:5px;
+}
+.btn-info-delete:hover{
+    background:#fff;
+    color:#282B3A;
+}
+.btn-info-edit{
+    float:left;
+    margin-right:5px;
+    margin-bottom:5px;
+}
+.btn-info-edit:hover{
+    background:#fff;
+    color:#282B3A;
+}
+.btn-general-profile{
+    border:1px solid #fff;
+    border-radius:0px;
+    padding:17px 28px;
+    font-family:'Open Sans',sans-serif;
+    font-weight:600;
+    font-size:10px;
+    color:#fff;
+    text-transform:uppercase;
 }
 .btn-general-dashboard{
     border:1px solid #fff;
     border-radius:0px;
-    padding:15px 25px;
+    padding:16px 27px;
     font-family:'Open Sans',sans-serif;
     font-weight:600;
     font-size:10px;
@@ -117,8 +209,8 @@ body {
   position: relative;
   -webkit-transition-property: color;
   transition-property: color;
-  -webkit-transition-duration: 2s;
-  transition-duration: 2s;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
 }
 .hvr-sweep-to-top:before {
   content: "";
@@ -163,6 +255,7 @@ body {
 .btn-general-block{
     background:#fff;
     border-radius:0px;
+    border:none;
     font-family:'Open Sans',sans-serif;
     font-weight:600;
     font-size:16px;
@@ -298,7 +391,7 @@ body {
 #home-cover {
   width: 100%;
   height: 100%;
-  background: url('https://cdn-images-1.medium.com/max/2000/1*MVvzz1gV_rIrzJfIVp4gAw.png') no-repeat center;
+  background: url('https://cdn-images-1.medium.com/max/1000/1*mom8fLwwqSp9bE0gogtLnw.png') no-repeat center;
   background-size:cover;
 }
 #home-content-box{
@@ -354,6 +447,9 @@ body {
     background:none;
     color:#fff;
 }
+.requests-input input{
+    outline:none;
+}
 .requests-search-button:hover{
     background:#0CCE6B;
 }
@@ -377,17 +473,14 @@ body {
     font-size:30px;
     
 }
-.requests-boxes i{
+.requests-boxes-wrapper i{
     font-size:10px;
     color:#ced4da;
     margin-bottom:30px;
 }
 .requests-boxes img{
-    width:150px;
-    height:80px;
-    margin-bottom:30px;
-    margin-top:20px;
-    margin-bottom:20px;
+    margin-top:0px;
+    margin-bottom:10px;
 }
 .requests-boxes h4{
     font-family:"Open Sans",sans-serif;
@@ -395,15 +488,31 @@ body {
     font-size:16px;
 }
 .requests-amounts-wrapper{
-    margin-bottom:30px;
+    margin-bottom:10px;
+}
+.requests-boxes-image{
+    object-fit:cover;
+    width:120px;
+    height:120px;
+}
+.form-group input:focus{
+    outline:none;
+    box-shadow:none;
 }
 /* Boxes */
 .requests-boxes-wrapper{
     background:#fff;
-    float:left;
     padding:40px;
     text-align:center;
     margin:0 40px 40px 0px;
+    max-width:300px;
+}
+/*Back to Top Button*/
+#back-to-top i{
+    color:#0CCE6B;
+    position:fixed;
+    bottom:20px;
+    right:20px;
 }
 /* ==========================================================
                         ABOUT
@@ -428,23 +537,26 @@ body {
     font-weight:400;
     letter-spacing:0px;
 }
-
-.hvr-border-fade {
+.about-sections i{
+    color:#282B3A;
+    font-size:500%;
+}
+/* Fade */
+.hvr-fade {
   display: inline-block;
   vertical-align: middle;
   -webkit-transform: perspective(1px) translateZ(0);
   transform: perspective(1px) translateZ(0);
   box-shadow: 0 0 1px transparent;
+  overflow: hidden;
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
-  -webkit-transition-property: box-shadow;
-  transition-property: box-shadow;
-  box-shadow: inset 0 0 0 4px #000CCE6B, 0 0 1px transparent;
-  /* Hack to improve aliasing on mobile/tablet devices */
+  -webkit-transition-property: color, background-color;
+  transition-property: color, background-color;
 }
-.hvr-border-fade:hover, .hvr-border-fade:focus, .hvr-border-fade:active {
-  box-shadow: inset 0 0 0 4px #0CCE6B, 0 0 1px transparent;
-  /* Hack to improve aliasing on mobile/tablet devices */
+.hvr-fade:hover, .hvr-fade:focus, .hvr-fade:active {
+  background-color: #282B3A;
+  color: white;
 }
 /* ==========================================================
                         SIGN UP
@@ -458,8 +570,12 @@ body {
 }
 .signup-username-wrapper{
     margin-bottom:20px;
+    outline:none;
 }
-
+.signup-username-wrapper input:focus{
+    outline:none;
+    box-shadow:none;
+}
 .signup-separation{
     margin-bottom:20px;
 }
@@ -483,6 +599,10 @@ body {
     padding-top:-5px;
     height:80%;
     letter-spacing:2px;
+}
+.signup-input:focus{
+    outline:none;
+    box-shadow:none;
 }
 .signup-big-logo{
     display:block;
@@ -517,7 +637,6 @@ body {
                         DASHBOARD
 ===========================================================*/
 #dashboard{
-    height:100%;
     width:100%;
     margin:0;
     padding:0;
@@ -593,9 +712,7 @@ body {
     border-top:none;
     margin-right:20px;
     color:#fff;
-}
-.dashboard-converter-wrapper input{
-
+    outline:none;
 }
 .dashboard-resized-input2{
     margin-top:20px;
@@ -609,7 +726,22 @@ body {
     margin-top:50px;
     background:transparent;
 }
-
+/*Social Media Logos*/
+.fa-facebook:hover{
+    color:#3b5998;
+}
+.fa-twitter:hover{
+    color:#1dcaff;
+}
+.fa-google-plus:hover{
+    color: #d34836;
+}
+.fa-instagram:hover{
+    color:#fbad50;
+}
+.fa-linkedin:hover{
+    color:#0077B5;
+}
 /* Transaction */
 .dashboard-transaction-wrapper-sub{
     margin-left:50px;
@@ -652,9 +784,232 @@ body {
     text-transform:uppercase;
     color:#ced4da;
 }
-
-
-
+/* ==========================================================
+                        INFO PAGE
+===========================================================*/
+#info{
+    width:100%;
+    background:#282B3A;
+    background-size:cover;
+}
+.info-wrapper{
+    margin-top:120px;
+}
+.info-wrapper img{
+    object-fit:cover;
+    width:90px;
+    height:90px;
+    display:block;
+    margin:0 auto 0 auto;
+}
+.info-wrapper-text{
+    margin-top:20px;
+}
+.info-wrapper-name{
+    font-family:"Dosis",sans-serif;
+    font-weight:600;
+    font-size:50px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:#fff;
+}
+.info-wrapper-name:hover{
+    text-decoration:none;
+    color:#fff;
+}
+.info-wrapper-details{
+    font-family:"Open Sans",sans-serif;
+    font-weight:400;
+    font-size:14px;
+    color:#fff;
+}
+.info-wrapper-labels{
+    font-weight:700;
+}
+.info-wrapper-stripe{
+    display:inline;
+}
+.info-buttons-delete{
+    background:none;
+}
+.info-buttons-delete:hover{
+    color:#282B3A;
+    background:#fff;
+}
+.info-buttons-container{
+    display:block;
+    margin:0 auto;
+}
+.info-comments-username{
+    font-family:"Open Sans",sans-serif;
+    font-weight:600;
+    font-size:16px;
+    color:#fff;
+}
+.info-comments-text{
+    font-family:"Open Sans",sans-serif;
+    font-weight:400;
+    font-size:14px;
+    color:#fff;
+}
+.pull-right{
+    font-family:"Open Sans",sans-serif;
+    font-weight:300;
+    font-style:"Italic";
+    font-size:14px;
+    color:#fff;
+}
+/* Underline From Left */
+.hvr-underline-from-left {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  position: relative;
+  overflow: hidden;
+}
+.hvr-underline-from-left:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  background: #fff;
+  height: 4px;
+  -webkit-transition-property: right;
+  transition-property: right;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-underline-from-left:hover:before, .hvr-underline-from-left:focus:before, .hvr-underline-from-left:active:before {
+  right: 0;
+}
+/* ==========================================================
+                        NEW COMMENT
+===========================================================*/
+.comment{
+    height:100%;
+    width:100%;
+    background:url("https://cdn-images-1.medium.com/max/1000/1*MVvzz1gV_rIrzJfIVp4gAw.png") center;
+    background-size:cover;
+}
+.comment-wrapper{
+    margin-top:150px;
+}
+.comment-header{
+    font-family:"Dosis",sans-serif;
+    font-weight:600;
+    font-weight:25px;
+    color:#fff;
+    margin-bottom:20px;
+}
+.comment-text-area{
+    background:transparent;
+    border-radius:0px;
+    border-top:none;
+    border-left:none;
+    border-right:none;
+    font-family:"Open Sans",sans-serif;
+    font-weight:300;
+    font-size:16px;
+    color:#fff;
+}
+.col-centered{
+    float:none;
+    display:block;
+    margin:0 auto;
+}
+.comment-button{
+    margin-top:20px;
+    margin-left:10px;
+}
+.comment-edit-left{
+    padding:0;
+}
+/* Button */
+.comment-button{
+    background:transparent;
+    border:1px solid #fff;
+    border-radius:0px;
+    padding:15px 25px;
+    font-family:'Open Sans',sans-serif;
+    font-weight:600;
+    font-size:10px;
+    color:#fff;
+    text-transform:uppercase;
+    float:left;
+    margin-right:5px;
+    
+}
+.comment-button:hover{
+    background:#fff;
+    color:#282B3A;
+}
+/* ==========================================================
+                        EDIT
+===========================================================*/
+#edit{
+    width:100%;
+    background:url("https://cdn-images-1.medium.com/max/1000/1*MVvzz1gV_rIrzJfIVp4gAw.png") center;
+    background-size:cover;
+}
+.edit-wrapper{
+    margin-top:120px;
+}
+.edit-header{
+    font-family:"Dosis",sans-serif;
+    font-weight:600;
+    font-size:25px;
+    color:#fff;
+    text-transform:uppercase;
+}
+.edit-labels{
+    font-family:"Open Sans",sans-serif;
+    font-weight:300;
+    font-size:12px;
+    text-transform:uppercase;
+    color:#ced4da;
+}
+.edit-input{
+    background:transparent;
+    border-radius:0px;
+    border-top:none;
+    border-left:none;
+    border-right:none;
+    color:#fff;
+}
+.edit-input:focus{
+    outline:none;
+    box-shadow:none;
+}
+/* Button */
+.edit-button{
+    background:none;
+    border:1px solid #fff;
+    border-radius:0px;
+    padding:15px 25px;
+    font-family:'Open Sans',sans-serif;
+    font-weight:600;
+    font-size:10px;
+    color:#fff;
+    text-transform:uppercase; 
+}
+.edit-button:hover{
+    background:#fff;
+    color:#282B3A;
+}
+/* ==========================================================
+                        MISTAKE EDIT
+===========================================================*/
+#mistake{
+    width:100%;
+    background:url("https://cdn-images-1.medium.com/max/1000/1*MVvzz1gV_rIrzJfIVp4gAw.png") center;
+    background-size:cover;
+}
 /* ==========================================================
                         IGNORE BELOW CODE
 ===========================================================*/

@@ -10,9 +10,13 @@
     <body>
     
     <div id="landing-header">
-        <h1><i class="fa fa-money" aria-hidden="true"></i> Frxcon</h1>
- 		<h2>Your Trusted Partner In Currency Exchange.</h2>
-		<a href="/trades" class="btn btn-lg btn-success">Match Now!</a>
+        <img src="https://cdn-images-1.medium.com/max/1000/1*JAY16IKJV36xzy0TkmuNIA.png">
+ 		<h2 class="landing-slogan">Make the Most</h2>
+ 		<% if (!currentUser){ %>
+		<a href="/login" class="btn btn-landing hvr-grow">Match Now</a>
+		<% } else { %>
+		<a href="/trades" class="btn btn-landing hvr-grow">Match Now</a>
+		<% } %>
     </div>
     
     <ul class="slideshow">

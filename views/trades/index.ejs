@@ -10,9 +10,9 @@
                      
                      <div class="col-md-6 text-left">
                         <h2>Welcome to FRXCON</h3>
-                        <h4>Give less, get more today with your unused foreign currency.</h2>
+                        <h4>Give less, get more today with your foreign currency.</h2>
                         <div id="home-btn" class="animated zoomIn">
-                           <a class="btn btn-lg btn-general hvr-sweep-to-right" href="#requests" title="Make Requests">Add Request</a>
+                           <a class="btn btn-lg btn-general hvr-sweep-to-right" href="/trades/new" title="Make Requests">Add Request</a>
                         </div>
                      </div>
                      <div class="col-md-6">
@@ -37,19 +37,19 @@
          <div class="container">
             <div class="row">
                <div class="col-md-4 text-center about-sections">
-                  <img src="https://cdn-images-1.medium.com/max/1000/1*ZnPhC3tFhMgVVtosUG6YxQ.png" class="hvr-border-fade">
+                  <i class="fa fa-users hvr-fade"></i>
                   <h2>Deal with other users</h2>
                   <h3>Deal with a global network of users at<br>the best exchange rates possible.</h3>
                </div>
                <div class="col-md-4 text-center about-sections">
-                  <img src="https://cdn-images-1.medium.com/max/1000/1*30oHzSB65bzZIGhzJyy3TA.png" class="hvr-border-fade">
+                  <i class="fa fa-comments-o hvr-fade"></i>
                   <h2>Chat with other users</h2>
                   <h3>Make use of our chat function to link<br>up with your potential trade partners.</h3>
                </div>
                <div class="col-md-4 text-center about-sections">
-                  <img src="https://cdn-images-1.medium.com/max/1000/1*Bp-tEu4xmh4xLzqZFlIz0Q.png" class="hvr-border-fade">
-                  <h2>User Profile</h2>
-                  <h3>Set up and edit your own user<br>account and profile.</h3>
+                  <i class="fa fa-credit-card hvr-fade"></i>
+                  <h2>Pay through credit card</h2>
+                  <h3>Enjoy convenience when you make transactions using <br>our in-built credit card payment system.</h3>
                </div>
             </div>
          </div>
@@ -75,35 +75,39 @@
                                  <input type='submit' value="Search" class="btn hvr-sweep-to-right requests-search-button hvr-sweep-to-right">
                               </div>
                            </form>
-                        /p>
-                     </div>
-                  </div>
-               </div>
-            <% trades.forEach(function(trade){ %>
-         </div>
-            <div class="container requests-boxes text-center">
-               <div class="row">
-                     <div class="requests-boxes-wrapper"
-                        <div class="col-md-4 text-center" data-wow-duration="1s" data-wow-delay=".5s">
-                  
-                           <h2> <%= trade.name %> </h4>
-                           <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>
-                           <br>
-                           <img src="https://cdn-images-1.medium.com/max/1000/1*VgYBq1P2RdyB1wuzpvL-sA.jpeg" >
-                           <div class="requests-amounts-wrapper">
-                              <h4>Need: <%= trade.needCurrency %> <%= trade.need %> </h4>
-                              <h4>Offer: <%= trade.offerCurrency%> <%= trade.offer %> </h4>
-                           </div>
-                           <p>
-                              <a href="/trades/<%=trade._id %>" class="btn btn-general-black hvr-sweep-to-right1">More Info</a>
-                           </p>
-                           <% }) %>
-                        </div>
                      </div>
                   </div>
                </div>
             </div>
+
+               <div class="container">
+                  <div class="row">
+                     <% trades.forEach(function(trade){ %>
+                     <div class="col-md-4 requests-container">
+                        <div class="requests-boxes-wrapper text-center">
+                           <h2> <%= trade.name %> </h2>
+                              <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>
+                                 <br>
+                              <img src=<%=trade.image%> class="requests-boxes-image" >
+                              <div class="requests-amounts-wrapper">
+                                 <h4>Need: <%= trade.needCurrency %> <%= trade.need %> </h4>
+                                 <h4>Offer: <%= trade.offerCurrency%> <%= trade.offer %> </h4>
+                              </div>
+                              <p>
+                                 <a href="/trades/<%=trade._id %>" class="btn btn-general-black hvr-sweep-to-right1">More Info</a>
+                              </p>
+                        </div>
+                     </div>
+                  <% }) %>
+                  </div>
+               </div>
+
          </div>
+         <a href="#home" id="back-to-top" class="btn btn-sm btn-blue btn-back-to-top smooth-scroll" title="home" role="button">
+            <i class="fa fa-angle-up"></i>
+         </a>
       </section>
+      
+      
         
 <% include ../partials/footer %>

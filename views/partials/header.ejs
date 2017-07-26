@@ -3,8 +3,11 @@
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
-        <meta name="description" content="Web Design, Fear Not, Beng Jui's Portfolio with HTML5, CSS3, Javascript, Bootstrap">
+        <meta name="description" content="Currency Exchange,FRXCON,Web Application">
+        <meta name="keywords" content="Currency Exchange,FRXCON,Web Application, Convenience">
         <meta name="viewport" content="width-device-wdith" ,intial-scale="1">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width-device-width" intial-scale="1">
         
         <!-- Title -->
         <title>Frxcon</title>
@@ -50,31 +53,31 @@
     }
  </script>
     </head>
-    <body>
+    <header>
         <nav class="navbar navbar-fixed-top">
             <div class="container-fluid">
                 <div class="frxcon-nav-wrapper">
-                    <button type="button" class="navbar-toggle-collapsed" data-toggle="collapse" data-target="frxcon-menu">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="/">
+                    
+                        <!--<button type="button" class="navbar-toggle-collapsed" data-toggle="collapse" data-target="#frxcon-menu">-->
+                        <!--    <span class="sr-only">Toggle navigation</span>-->
+                        <!--    <span class="icon-bar"></span>-->
+                        <!--    <span class="icon-bar"></span>-->
+                        <!--    <span class="icon-bar"></span>-->
+                        <!--</button>-->
+                        <a class="navbar-brand" href="#">
                             <img src="https://cdn-images-1.medium.com/max/1000/1*wFHMJDS_eyKn22qCuLJIgQ.png" class="frxcon-logo">
                         </a>
-                    </div>
+                    
                 </div>
                 <div class="collapse navbar-collapse" id="frxcon-menu">
                     <ul class="nav navbar-nav">
-                            <li><a class="smooth-scroll hvr-underline-from-left" href="/trades">Home</a></li>
-                            <li><a class="smooth-scroll hvr-underline-from-left" href="#requests">Requests     </a></li>
-                            <li class="smooth-scroll hvr-underline-from-left"><a href="/chats/login">Chat     </a></li>
                             <% if (!currentUser){ %>
                             <li class="smooth-scroll hvr-underline-from-left"><a href="/login">Login     </a></li>
                             <li class="smooth-scroll hvr-underline-from-left"><a href="/register">Register</a></li>
                              <% } else { %>
+                            <li><a class="smooth-scroll hvr-underline-from-left" href="/trades">Home</a></li>
+                            <li><a class="smooth-scroll hvr-underline-from-left" href="#requests">Requests     </a></li>
+                             <li class="smooth-scroll hvr-underline-from-left"><a href="/chats/login">Chat     </a></li>
                              <li class="smooth-scroll hvr-underline-from-left"><a href="/profiles/<%=currentUser.id%>">     <%= currentUser.username%> </a></li>
                             <li class="smooth-scroll hvr-underline-from-left"><a href="/logout">Logout</a></li>
                         <% } %>
@@ -82,8 +85,9 @@
                 </div>
             </div>
         </nav>
-        
-        
+    </header>
+    
+    <body>
         <!-- jquery -->
         <script src="https://code.jquery.com/jquery-latest.min.js"></script>
         
@@ -102,3 +106,4 @@
             </div>
         <% } %>
     </div>
+    </body>

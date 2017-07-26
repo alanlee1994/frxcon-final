@@ -1,9 +1,11 @@
 $(document).ready(function(){
     $(window).scroll(function(){
         if($(this).scrollTop()<50){
-            $("nav".removeClass("frxcon-top-nav"));
+            $("nav").removeClass("frxcon-top-nav")
+            $("#back-to-top").fadeOut();
         }else{
-            $("nav").addClass("frxcon-top-nav");
+            $("nav").addClass("frxcon-top-nav")
+            $("#back-to-top").fadeIn();
         }
     })
 })

@@ -18,7 +18,7 @@ var commentRoutes = require("./routes/comments"),
     tradeRoutes = require("./routes/trades"),
     indexRoutes = require("./routes/index"),
     ChatRoutes = require("./routes/chats")
-    
+    // ratingRoutes = require("./routes/ratings")
 //=====================================Setup and initialization======================================
 mongoose.connect("mongodb://localhost/frxcon");
 app.use(bodyParser.urlencoded({extended:true}));
@@ -54,7 +54,7 @@ app.use(indexRoutes);
 app.use("/trades/:id/comments",commentRoutes);
 app.use("/trades",tradeRoutes);
 app.use(ChatRoutes);
-// app.use("/ps/:id/ratings", ratingRoutes);
+// app.use("/profile/:id", ratingRoutes);
 //==========================app.listen!==========================================================
 app.listen(process.env.PORT, process.env.IP, function(){
     console.log("frxcon is now running...");

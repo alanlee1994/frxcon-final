@@ -1,20 +1,25 @@
 <% include ../partials/header %>
 
-<div class="container">
-    <div class="row">
-        <h1 style="text-align:center">Add New Comment to <%=trade.name%>'s request</h1>
-        <div style:"width:30%; margin:30px auto;">
-             <form action="/trades/<%=trade._id%>/comments" method="POST">
-                <div class="form-group">
-                    <input class="form-control" type="text" name="comment[text]" placeholder="Comments">
-                </div>
-                <div class="form-group">
-                    <input class="btn btn-large btn-primary"type="submit">
-                </div>
-            </form>
-            <a class="btn btn-info btn-xs" href="/trades">Back to view!</a>
+<!-- New Comments -->
+<section class="comment">
+    <div class="container comment-init">
+        <div class="row comment-wrapper">
+            <h1 class="comment-header text-center">Add New Comment to <%=trade.name%>'s Request</h1>
+            <div id="comment-parent">
+                 <form action="/trades/<%=trade._id%>/comments" method="POST">
+                    <div class="form-group col-md-7 col-centered">
+                        <input class="form-control comment-text-area" type="" name="comment[text]" placeholder="Comments">
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-7 col-centered" id="comment-center">
+                            <input class="btn btn-general-dashboard comment-button" type="submit">
+                            <a class="btn btn-general-dashboard comment-button" href="/trades">Back to View</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+</section>
 
 <% include ../partials/footer %>   

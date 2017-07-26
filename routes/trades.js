@@ -1,10 +1,10 @@
 var express = require("express"),
     router = express.Router(),
     Trade = require("../models/trade"),
-    middleware = require("../middleware")
+    middleware = require("../middleware"),
+    User = require("../models/user")
 
-
-router.get("/", function(req,res){
+router.get("/",  middleware.isLoggedIn, function(req,res){
     var noMatch=null;
     if(req.query.search){
         const regex = new RegExp(escapeRegex(req.query.search), 'gi');
@@ -32,11 +32,18 @@ router.get("/", function(req,res){
 //===========================where people post their requests================================
 //rendering the form
 router.get("/new", middleware.isLoggedIn, function (req,res){
-    res.render("trades/new");
+    User.findById(req.user._id,function (err,foundUser){
+        if (err) {
+            console.log(err);
+        } else {
+            res.render("trades/new",{user:foundUser});
+        }
+    })
 });
 //posting the form information
 router.post("/", middleware.isLoggedIn, function(req,res){
     var name= req.body.name;
+    var image = req.body.image;
     var contact= req.body.contact;
     var location= req.body.location;
     var needCurrency= req.body.needCurrency;
@@ -48,7 +55,7 @@ router.post("/", middleware.isLoggedIn, function(req,res){
         id: req.user._id,
         username: req.user.username
     };
-    var newTrade={name: name , author:author, contact:contact, location: location, need: need, offer: offer, offerCurrency:offerCurrency, needCurrency:needCurrency, description: desc };
+    var newTrade={name: name , image: image , author:author, contact:contact, location: location, need: need, offer: offer, offerCurrency:offerCurrency, needCurrency:needCurrency, description: desc };
     Trade.create(newTrade,function(err,newlycreated){
         if (err){
             console.log(err);
@@ -99,36 +106,31 @@ router.delete("/:id", middleware.checkTradeOwnership,function(req,res){
 });
 // checkingout trades route
 
-router.get("/:id/checkout",middleware.isLoggedIn, function (req,res){
-    Trade.findById(req.params.id, function(err,foundTrade){
-            var errMsg = req.flash('error')[0];
-            res.render("trades/checkout",{trade:foundTrade, errMsg: errMsg, noError:!errMsg});
-        });
-});
-
 router.post("/:id/checkout", function(req,res,next){
     Trade.findById(req.params.id, function(err,foundTrade){
         if (err){
             console.log(err)
         }
         var stripe = require("stripe")("sk_test_YZWw0StrSxPe4LFoofvELjbe");
+        var chargeAmount = req.body.chargeAmount;
         var token= req.body.stripeToken;
         var charge = stripe.charges.create({
         amount: foundTrade.need * 100,
         currency: foundTrade.needCurrency,
         source: token, // obtained with Stripe.js
         description: "Test Charge"
-        },function(err, charge){
+        }, function(err, charge){
             if(err){
+            console.log(token , charge )
             req.flash('error', err.message);
-            return res.redirect('/trades/'+foundTrade._id+'/checkout');
-            } else{
+            return res.redirect('back');
+            } else {
                 Trade.findByIdAndRemove(req.params.id, function(err){
                     if (err){
-                        req.flash('error', "Please contact user to remove this request.")
+                        req.flash('error', "Unable to find Request.")
                     } else {
                         req.flash('success', 'Transaction Successful.');
-                        res.redirect('/');
+                        res.redirect('/trades');
                     }
                 })
             }

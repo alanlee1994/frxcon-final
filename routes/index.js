@@ -44,8 +44,8 @@ router.post("/login", passport.authenticate("local", {
 //logout logic
 router.get("/logout", function(req,res){
     req.logout();
-    req.flash("success","Logged you out, see you soon!")
-    res.redirect("/trades");
+    req.flash("success","Please sign in to access FRXCON")
+    res.redirect("/login");
 })
 //==================================Profile========================================================
 router.get("/profiles/:username/new", function(req,res){

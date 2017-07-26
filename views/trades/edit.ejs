@@ -1,38 +1,41 @@
 <% include ../partials/header %>
 
-<div class="container">
-    <div class="row">
-        <h1>Made a mistake while making your request?</h1>
-        <div>
-             <form action="/trades/<%=trade._id%>?_method=PUT" method="POST">
-                <div class="form-group">
-                    <input class="form-control" type="text" name="trade[name]" value="<%=trade.name %>">
-                </div>
-                <div class="form-group">
-                    <input class="form-control"type="text" name="trade[contact]" value="<%=trade.contact%>">
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="text" name="trade[location]" value="<%=trade.location %>">
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="text" name="trade[needCurrency]" value="<%=trade.needCurrency %>">
-                    <input class="form-control"type="number" min="0.00" step="1.00" name="trade[need]" value="<%=trade.need %>">
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="text" name="trade[offerCurrency]" value="<%=trade.offerCurrency %>">
-                    <input class="form-control"type="number" min="0.00" step="1.00" name="trade[offer]" value="<%=trade.offer %>">
-                </div>
-                <div class="form-group">
-                    <p>Please include any additional requests and contact any prospective users using live chat!</p>
-                    <textarea name="trade[description]"><%=trade.description %></textarea>
-                </div>
-                <div class="form-group">
-                    <input class="btn btn-small btn-success"type="submit">
-                </div>
-            </form>
-            <a href="/trades">View all offers</a>
+<section id="mistake">
+    <div class="container">
+        <div class="row  edit-wrapper">
+            <h1 class="edit-header">Made a mistake while making your request?</h1>
+            <div>
+                 <form action="/trades/<%=trade._id%>?_method=PUT" method="POST">
+                    <div class="form-group edit-labels">
+                        <input class="form-control edit-input" type="text" name="trade[name]" value="<%=trade.name %>">
+                    </div>
+                    <div class="form-group edit-labels">
+                        <input class="form-control edit-input" type="text" name="trade[contact]" value="<%=trade.contact%>">
+                    </div>
+                    <div class="form-group edit-labels">
+                        <input class="form-control edit-input" type="text" name="trade[location]" value="<%=trade.location %>">
+                    </div>
+                    <div class="form-group edit-labels">
+                        <input class="form-control edit-input" type="text" name="trade[needCurrency]" value="<%=trade.needCurrency %>">
+                        <br>
+                        <input class="form-control edit-input"type="number" min="0.00" step="1.00" name="trade[need]" value="<%=trade.need %>">
+                    </div>
+                    <div class="form-group edit-labels">
+                        <input class="form-control edit-input" type="text" name="trade[offerCurrency]" value="<%=trade.offerCurrency %>">
+                        <br>
+                        <input class="form-control edit-input"type="number" min="0.00" step="1.00" name="trade[offer]" value="<%=trade.offer %>">
+                    </div>
+                    <div class="form-group edit-labels">
+                        <p>Please include any additional requests and contact any prospective users using live chat!</p>
+                        <textarea name="trade[description]" class="new-textarea" rows="4" cols="50"><%=trade.description %></textarea>
+                    </div>
+                    <div class="form-group edit-labels">
+                        <input class="btn btn-general-dashboard edit-button hvr-underline-from-left"type="submit">
+                    </div>
+                </form>
+                <a href="/trades" class="new-offers">View all offers</a>
+            </div>
         </div>
     </div>
-</div>
-
+</section>
 <% include ../partials/footer %>

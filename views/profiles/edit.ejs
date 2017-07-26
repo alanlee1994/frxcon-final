@@ -1,49 +1,52 @@
 <% include ../partials/header %>
 
-<div class="container">
-    <div class="row">
-        <h1>Profile Edit</h1>
-            <div>
-                 <form action="/profiles/<%=profile._id%>?_method=PUT" method="POST">
-                    <div class="form-group">
-                        <p>Full Name:</p>
-                        <input class="form-control" type="text" name="profile[name]" value="<%=profile.profileInfo.name %>">
-                    </div>
-                    <div class="form-group">
-                        <p>Contact number:</p>
-                        <input class="form-control" type="text" name="profile[contact]" value="<%=profile.profileInfo.contact %>">
-                    </div>
-                    <div class="form-group">
-                        <p>Date of Birth: </p>
-                        <input class="form-control" type="text" name="profile[dob]" value="<%=profile.profileInfo.dob %>">
-                    </div>
-                    <div class="form-group">
-                        <p>Please state your current occupation:</p>
-                        <input class="form-control" type="text" name="profile[occupation]" value="<%=profile.profileInfo.occupation %>">
-                    </div>
-                    <div class="form-group">
-                        <p>Please attach your profile image url:</p>
-                        <input class="form-control" type="text" name="profile[image]" value="<%=profile.profileInfo.image %>">
-                    </div>
-                     <div class="form-group">
-                        <p>Country of Residence:</p>
-                            <input class="form-control" type="text" name="profile[country]" value="<%=profile.profileInfo.country %>">
-                    </div>
-                    <div class="form-group">
-                        <p>Address:</p>
-                        <input class="form-control" type="text" name="profile[address]" value="<%=profile.profileInfo.address %>">
-                        <!--google maps perharps-->
-                    </div>
-                    <div class="form-group">
-                        <p>I usually require these currencies:</p>
-                            <input class="form-control" type="text" name="profile[currency]" value="<%=profile.profileInfo.currency %>">
-                    </div>
-                    <div class="form-group">
-                        <input class="btn btn-small btn-success"type="submit">
-                    </div>
-            </form>
-            <a href="/trades">View all requests</a>
+<!-- Edit Profile -->
+<section id="edit">
+    <div class="container">
+        <div class="row edit-wrapper">
+            <h1 class="edit-header">Profile Edit</h1>
+                <div>
+                     <form action="/profiles/<%=profile._id%>?_method=PUT" method="POST">
+                        <div class="form-group edit-labels">
+                            <p>Full Name:</p>
+                            <input class="form-control edit-input" type="text" name="profile[name]" value="<%=profile.profileInfo.name %>">
+                        </div>
+                        <div class="form-group edit-labels">
+                            <p>Contact number:</p>
+                            <input class="form-control edit-input" type="text" name="profile[contact]" value="<%=profile.profileInfo.contact %>">
+                        </div>
+                        <div class="form-group edit-labels">
+                            <p>Date of Birth: </p>
+                            <input class="form-control edit-input" type="text" name="profile[dob]" value="<%=profile.profileInfo.dob %>">
+                        </div>
+                        <div class="form-group edit-labels">
+                            <p>Please state your current occupation:</p>
+                            <input class="form-control edit-input" type="text" name="profile[occupation]" value="<%=profile.profileInfo.occupation %>">
+                        </div>
+                        <div class="form-group edit-labels">
+                            <p>Please attach your profile image url:</p>
+                            <input class="form-control edit-input" type="text" name="profile[image]" value="<%=profile.profileInfo.image %>">
+                        </div>
+                         <div class="form-group edit-labels">
+                            <p>Country of Residence:</p>
+                                <input class="form-control edit-input" type="text" name="profile[country]" value="<%=profile.profileInfo.country %>">
+                        </div>
+                        <div class="form-group edit-labels">
+                            <p>Address:</p>
+                            <input class="form-control edit-input" type="text" name="profile[address]" value="<%=profile.profileInfo.address %>">
+                            <!--google maps perharps-->
+                        </div>
+                        <div class="form-group edit-labels">
+                            <p>I usually require these currencies:</p>
+                                <input class="form-control edit-input" type="text" name="profile[currency]" value="<%=profile.profileInfo.currency %>">
+                        </div>
+                        <div class="form-group edit-labels">
+                            <input class="btn btn-general-dashboard edit-button"type="submit">
+                        </div>
+                </form>
+                <a href="/trades" class="new-offers">View all requests</a>
+        </div>
     </div>
-</div>
+</section>
 
 <% include ../partials/footer %>
