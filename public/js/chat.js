@@ -1,4 +1,5 @@
-var socket = io(location.origin + ':8081');
+// var socket = io(location.origin + ':8081');
+var socket =  io();
 
 
 function scrollToBottom(){

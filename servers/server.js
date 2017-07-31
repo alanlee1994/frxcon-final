@@ -7,7 +7,8 @@ const {generateMessage, generateLocationMessage} = require('./utils/message');
 const {isRealString} = require('./utils/validation');
 const {Users} = require('./utils/users');
 const publicPath = path.join(__dirname, '../public');
-const port = 8081;
+// const port = 8081;
+const port = process.env.PORT || 3000;
 
 
 module.exports = (app) => {
