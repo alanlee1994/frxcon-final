@@ -20,7 +20,8 @@ var commentRoutes = require("./routes/comments"),
     ChatRoutes = require("./routes/chats")
     // ratingRoutes = require("./routes/ratings")
 //=====================================Setup and initialization======================================
-mongoose.connect("mongodb://localhost/frxcon");
+// mongoose.connect("mongodb://localhost/frxcon");
+mongoose.connect("mongodb://frxcon:pokiki123@ds129023.mlab.com:29023/frxcon");
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname+"/public"));
